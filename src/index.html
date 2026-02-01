@@ -19,6 +19,7 @@
         <input type="checkbox" id="info-btn" hidden>
         <label for="info-btn" class="checkbox-image"></label>
       </div>
+      <img src="images/timerIcon.png" id="timer-icon" draggable="false">
       <div id="timer" class="cell">00:00</div>
       <div class="cell cell-1">
         <div class="bottle-container" id="bottle-container">
@@ -37,7 +38,7 @@
       <div class="slidecontainer">
         <input type="range" step="0.5" min="0" max="100" value="50" class="slider" id="fill-slider">
       </div>
-      <a id="fill-percent">50%</a>
+      <span id="fill-percent">50.0 %</span>
       <div class="box3"><button id="no-btn2"><img src="images/noButton.png" alt="no" draggable="false"></button></div>
       <div class="box3"><button id="yes-btn2"><img src="images/yesButton.png" alt="yes" draggable="false"></button></div>
     </div>
@@ -55,13 +56,36 @@
 
     <div class="info-view">
 
-      <h1 id="welcome-name">Hello, Mark!</h1>
+      <h1 id="welcome-name">Hello!</h1>
       <h1 id="level-number">Level 1</h1>
-      <h1 id="bottle-size">Bottle Capacity</h1>
-      <h1 id="daily-goal">Daily Goal: 0% </h1>
-      <h1 id="reminder-header">Reminder</h1>
-      <h1 id="total-today">Total today: </h1>
-      <h1 id="average-sip">Average Sip: </h1>
+
+      <div class="capacity-block">
+        <h1 id="bottle-size">Bottle Capacity</h1>
+        <input type="text" id="capacity-input" name="capacity-input" disabled>
+        <h1 id="bottle-size-unit">ml</h1>
+        <button class="small-button" id="capacity-change"><img src="images/smallEdit.png" draggable="false"></button>
+        <button class="small-button" id="capacity-change-yes"><img src="images/smallCheckNew.png" draggable="false"></button>
+        <button class="small-button" id="capacity-change-no"><img src="images/smallNo.png" draggable="false"></button>
+      </div>
+      
+      <div class="goal-block">
+        <h1 id="daily-goal">Daily Goal: 0% </h1>
+        <input type="text" id="goal-input" name="goal-input" value="2000" disabled>
+        <h1 id="daily-goal-unit">ml</h1>
+        <button id="goal-start"><img src="images/smallEdit.png" alt="-" draggable="false"></button>
+      </div>
+
+      <div class="reminder-block">
+        <h1 id="reminder-header">Reminder</h1>
+        <input type="text" id="time-input" name="time-input" disabled>
+        <h1 id="reminder-unit">seconds</h1>
+        <button id="time-start"><img src="images/smallEdit.png" alt="-" draggable="false"></button>
+      </div>
+
+      <h1 id="total-today">Total today: 0 ml</h1>
+      <h1 id="average-sip">Average Sip: 0 ml</h1>
+      <h1 id="grand-total">Grand total: 0 ml</h1>
+      <h1 id="hours-total">Hours opened: 0</h1>
 
       <div class="quest-board">
         <h1 id="quests-header">Daily Quests</h1>
@@ -75,15 +99,23 @@
         <div class="quest" data-quest-id="2">
           <div class="quest-name">Drink Water</div>
           <div class="quest-progress">1000/1200 ml</div>
+          <img src = "images/yesSimple.png" class="quest-complete" draggable="false">
         </div>
 
         <div class="quest" data-quest-id="3">
           <div class="quest-name">Sip four times in a single hour</div>
           <div class="quest-progress">0/4 sips</div>
+          <img src = "images/yesSimple.png" class="quest-complete" draggable="false">
         </div>
 
       </div>
 
+    </div>
+
+    <button class="unit-button" data-units="ml,oz,L">ml</button>
+
+    <div class="unit-selector" id="unitSelector">
+      <!-- Dynamically filled by JS -->
     </div>
 
   </body>

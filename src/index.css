@@ -3,6 +3,7 @@
 /* 
   z-index values (top to bottom):
 
+  unit-selector: 9999
   darkscreen: 500
 
 */
@@ -19,6 +20,7 @@ body {
 a, div {
   font-family: "Jersey 15", sans-serif;
   font-size: 24px;
+  color: #262133;
 
   user-select: none;
 }
@@ -50,6 +52,33 @@ img {
 .title-text {
   text-align: center;
   margin: 10px;
+}
+
+input {
+  color: #000;
+  background: white;
+  border: 2px solid #b4aeb9;
+  border-radius: 6px;
+
+  font-family: "Jersey 15", sans-serif;
+  font-size: 20px;
+  
+  font-weight: 400;
+  font-style: normal;
+}
+
+input:disabled {
+  color: #B5C0E5;
+  background: #EFE8F2;
+  border: 2px solid #B5C0E5;
+  border-radius: 6px;
+
+  font-family: "Jersey 15", sans-serif;
+  font-size: 20px;
+  
+  font-weight: 400;
+
+  user-select: none;
 }
 
 /* starts hidden */
@@ -184,21 +213,31 @@ input[type="checkbox"]:checked + .checkbox-image {
   transform: translateY(0);
 }
 
+#sip-btn:active {
+  transform: translateY(2px);
+  transition: ease-out 70ms;
+}
+
 #sip-btn:hover {
   cursor: pointer;
   animation: bounce 300ms ease;
   filter: brightness(1.2);
 }
 
+.small-button {
+  width: 20px;
+  margin: 2px; 
+}
+
 button {
-  background-color: #00000000;
+  background-color: #ff989800;
   border-color: #00000000;
   -webkit-app-region: no-drag
 }
 
 button:hover {
   cursor: pointer;
-  filter: brightness(1.5);
+  filter: brightness(1.4);
   transition: ease-in-out 70ms;
 }
 
@@ -229,6 +268,14 @@ button:active {
   border: 2px solid #ae00ff00;
 
   z-index: 323;
+}
+
+#timer-icon  {
+  position: absolute;
+  width: 20px;
+  height: 23px;
+
+  transform: translate(73px, -4px);
 }
 
 #timer {
@@ -326,6 +373,8 @@ button:active {
   justify-content: center;
   align-items: center;
   transform: translate(0px, 5px);
+
+  cursor: pointer;
 }
 
 #fill-header {
@@ -551,7 +600,7 @@ button:active {
 h1 {
   display: flex;
 
-  color: #000;
+  color: #262133;
   font-family: "Jersey 15", sans-serif;
   font-size: 25px;
   font-weight: 400;
@@ -561,11 +610,10 @@ h1 {
   z-index: 20;
 
   margin: 2px;
-  height: 20px;
 
   text-align: left;
 
-  border: 1px solid #ff000000;;
+  border: 1px solid #ff000000;
   background-color: #5900ff00;
   user-select: none;
 }
@@ -579,32 +627,63 @@ h1 {
   justify-content: center;
 }
 
-#bottle-size {
-  width: 150px;
+.capacity-block {
+  display: flex;
+  width: 330px;
   grid-column: 0 / 0;
   grid-row: 3 / 3;
+
+  align-items: center;
+  justify-content: left;
 }
 
-#daily-goal {
-  width: 150px;
+.goal-block {
+  display: flex;
+  width: 400px;
   grid-column: 0 / 0;
   grid-row: 4 / 4;
+
+  align-items: center;
+  justify-content: left;
 }
 
-#reminder-header {
+.reminder-block {
+  display: flex;
+  width: 250px;
   grid-column: 0 / 0;
   grid-row: 5 / 5;
+
+  align-items: center;
+  justify-content: left;
+}
+
+#time-input, #goal-input, #capacity-input {
+  width: 70px;
+  position: relative;
 }
 
 #total-today {
+  width: 400px;
   grid-column: 0 / 0;
   grid-row: 6 / 6;
 }
 
 #average-sip {
-  width: 150px;
+  width: 200px;
   grid-column: 0 / 0;
   grid-row: 7 / 7;
+}
+
+#grand-total {
+  width: 170px;
+  grid-column: 0 / 0;
+  grid-row: 8 / 8;
+}
+
+#hours-total {
+  width: 150px;
+  grid-column: 3 / 3;
+  grid-row: 8 / 8;
 }
 
 .fold-btn {
@@ -635,7 +714,7 @@ h1 {
   border: 1px solid #ff000000;;
   background-color: #5900ff00;
 
-  transform: translate(-2.5px, 5px);
+  transform: translate(-2.5px, 200px);
 }
 
 .quest {
@@ -647,9 +726,9 @@ h1 {
   justify-content: center;
   align-items: center;
 
-  border: 3px solid #000000;;
+  border: 3px solid #262133;
   border-radius: 5px;
-  background-color: #c8c6ce;
+  background-color: #dad6f1;
 
   margin: 5px;
 
@@ -672,6 +751,13 @@ h1 {
 .quest-complete {
   position: absolute;
   transform: translate(80px, -34px);
+}
+
+.xp-reward {
+  font-size: 18px;
+  text-align: right;
+  position: absolute;
+  transform: translate(0px, 0px);
 }
 
 #quests-header {
@@ -701,4 +787,41 @@ h1 {
   100% {
     transform: translateY(0);
   }
+}
+
+.unit-selector {
+  position: absolute;
+  display: none;
+
+  flex-wrap: nowrap;        /* no wrapping allowed */
+  white-space: nowrap;      /* prevents text inside buttons from wrapping */
+
+  min-width: 80px;
+  background: white;
+  border: 2px solid #b4aeb9;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0px 0;
+  z-index: 9990;
+  
+  font-family: "Jersey 15", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.unit-selector button, .unit-button {
+  font-family: "Jersey 15", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.unit-selector button:hover {
+  background-color: rgb(255, 195, 116);
+  border-radius: 6px;
+}
+
+#capacity-change-yes,
+#capacity-change-no {
+	display: none;
 }

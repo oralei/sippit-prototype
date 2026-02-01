@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, Notification, ipcMain } = require('electron');
 const path = require('node:path');
 
 // hot reload - REMOVE WHEN DOING npm run make
@@ -82,4 +82,15 @@ ipcMain.on('fold-info', () => {
 
 ipcMain.on('unfold-info', () => {
   win.setSize(900, 550, true);
+})
+
+const NOTIFICATION_TITLE = 'sippit';
+const NOTIFICATION_BODY = 'Time to sip!';
+
+function showNotification () {
+  new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY, icon: 'src/images/notification.png' }).show();
+}
+
+ipcMain.on('send-notif', () => {
+  showNotification();
 })

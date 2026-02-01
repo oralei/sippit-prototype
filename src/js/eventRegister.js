@@ -23,18 +23,39 @@ noFillButton.addEventListener("click", toggleOverlay);
 let confirmSetFill = document.getElementById("yes-btn2");
 confirmSetFill.addEventListener("click", setMenuFill);
 
+let submitTimer = document.getElementById("time-start");
+submitTimer.addEventListener("click", setReminder);
+
+let editCapacity = document.getElementById("capacity-change");
+editCapacity.addEventListener("click", (event) => {
+  const button = event.currentTarget; // always refers to the button, not inner <img>
+  editTotalCapacity(button);
+});
+
+let submitCapacity = document.getElementById("capacity-change-yes");
+submitCapacity.addEventListener("click", updateTotalCapacity);
+
+let cancelCapacity = document.getElementById("capacity-change-no");
+cancelCapacity.addEventListener("click", cancelCapacityChange);
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "o" || event.key === "O") {
-    toggleOverlay();
+    toggleOverlay(); 
   }
 });
 
-let bottle = document.getElementById("bottle-container");
-bottle.addEventListener("click", toggleOverlay);
+let bottlePress = document.getElementById("bottle-container");
+bottlePress.addEventListener("click", toggleOverlay);
 
 let darkScreen = document.getElementById("darkscreen1");
 darkScreen.addEventListener("click", toggleOverlay);
 
-inputFilter(document.getElementById("sip-amount-input"), function(value) {
-  return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp.
+let fillUnitSelect = document.getElementById("fill-percent");
+fillUnitSelect.addEventListener("click", (e) => {
+  e.stopPropagation(); // Prevent bubbling
+  selectUnitFill(e.target);
 });
+
+/* inputFilter(document.getElementById("sip-amount-input"), function(value) {
+  return /^\d*\.?\d*$/.test(value); // Allow digits and '.' only, using a RegExp.
+}); */

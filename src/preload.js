@@ -8,4 +8,5 @@ contextBridge.exposeInMainWorld("electronAPI", {
   minimizeApp: () => ipcRenderer.send("minimize-app"),
   foldInfo: () => ipcRenderer.send('fold-info'),
   unfoldInfo: () => ipcRenderer.send('unfold-info'),
+  showNotification: () => ipcRenderer.send('send-notif'),
 });
