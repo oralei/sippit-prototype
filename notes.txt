@@ -1,0 +1,4 @@
+Things I need to remember:
+
+- How to compile/run app:
+Enter in console "npm start"

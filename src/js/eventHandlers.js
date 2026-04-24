@@ -1,26 +1,6 @@
 // Event handlers for registered events from eventRegister.js
 console.log("Testing, testing, I'm just suggesting. You and I might not be the best thing!"); 
 
-const bottleState = {
-	totalWater: 1182.94, // ml
-	remainingWater: 1182.94, // ml
-	remainingPercent: 100, 
-	remainingOz: 40,
-	percent: 15,
-};
-
-const setSettings = {
-	reminderMinutes: 60,
-	reminderSeconds: 0,
-	dailyGoal: 2000, // ml
-	averageSip: 0, // ml
-};
-
-const dailyStats = {
-	dailyGoalProgress: 0, // ml
-	totalToday: 0, // ml
-}
-
 var sipMenuOpen = false;
 
 function exitApp()
@@ -61,101 +41,6 @@ function closeSip()
 	sipMenuOpen = false;
 
 	sipMenu.style.bottom = "-200px";
-}
-
-//  ------------------------------ SIP FUNCTION ------------------------------
-
-
-
-function sipWater() 
-{
-	var waterFill = document.getElementById("water-fill");
-	var ml = parseFloat(document.getElementById("sip-amount-input").value);
-
-	if (isNaN(ml))
-		ml = 0;
-
-	var currentClip = getComputedStyle(waterFill).clipPath;
-
-	// ml to percent
-	let percent = ((ml / bottleState.totalWater) * (0.85 / 1)) * 100;
-	
-	// get current percent from regex
-	let currentPercent = currentClip.match(/inset\(([\d.]+)%/);
-	if (!currentPercent) return;
-
-	let currentTop = parseFloat(currentPercent[1]);
-
-	// add new sip to clip path percent
-	let newTop = currentTop + percent;
-
-	// make sure it cant go over 100
-	newTop = Math.min(newTop, 100);
-
-	let waterDrank = Math.min(bottleState.remainingWater, ml);
-
-	bottleState.remainingWater -= ml;
-	bottleState.remainingWater = Math.max(0, bottleState.remainingWater); // prevent negative
-
-	bottleState.remainingPercent = parseFloat((bottleState.remainingWater / bottleState.totalWater) * 100);
-	bottleState.remainingPercent = Math.max(0, bottleState.remainingPercent); // prevent negative
-
-	bottleState.remainingOz = mlToOz(bottleState.remainingWater);
-	bottleState.remainingOz = Math.max(0, bottleState.remainingOz); // prevent negative
-
-	setWaterLevel(newTop, bottleState.remainingWater);
-
-	// add to daily goal:
-	dailyStats.dailyGoalProgress += waterDrank;
-	let goalPercent = Math.min(100, ((dailyStats.dailyGoalProgress / setSettings.dailyGoal) * 100));
-
-	// add to daily total:
-	dailyStats.totalToday += waterDrank;
-
-	console.log(bottleState.remainingWater);
-	console.log(bottleState.remainingPercent);
-	console.log(bottleState.remainingOz);
-
-	console.log(goalPercent.toFixed(1) + "%");
-
-	document.getElementById("daily-goal").innerHTML = "Daily Goal: " + goalPercent.toFixed(1) + "%";
-	document.getElementById("total-today").innerHTML = "Total today: " + dailyStats.totalToday + " ml";
-}
-
-
-function setWaterLevel(percent, ml)
-{
-	var waterFill = document.getElementById("water-fill");
-	var currentClip = getComputedStyle(waterFill).clipPath;
-	ml = parseFloat(ml);
-
-	// apply the new clip-path css
-	waterFill.style.clipPath = `inset(${percent}% 0 0 0)`;
-
-	bottleState.percent = percent;
-	bottleState.remainingWater = ml;
-
-	document.getElementById("remaining-ml").innerHTML = ml.toFixed(1) + " ml";
-	document.getElementById("remaining-oz").innerHTML = mlToOz(ml).toFixed(1) + " oz";
-}
-
-function getTopToPercent()
-{
-	var waterFill = document.getElementById("water-fill");
-	var currentClip = getComputedStyle(waterFill).clipPath;
-
-	let currentPercent = currentClip.match(/inset\(([\d.]+)%/);
-	if (!currentPercent) return;
-
-	let currentTop = parseFloat(currentPercent[1]);
-
-	console.log(currentTop);
-	return currentTop * 0.01;
-}
-
-function refillWater()
-{
-	setWaterLevel(15, bottleState.totalWater);
 }
 
 function editTotalCapacity(target) {
@@ -213,9 +98,7 @@ function cancelCapacityChange() {
 	input.disabled = true;
 }
 
-// ---------------------- Fill Menu Things ---------------------- 
-
-
+// ---------------------- Fill Menu ---------------------- 
 
 const slider = document.getElementById("fill-slider");
 const fillPercent = document.getElementById("fill-percent");
@@ -288,54 +171,7 @@ function setMenuFill() {
 	console.log(bottleState.remainingOz);
 }
 
-// ---------------------- Notification/Reminder ---------------------- 
-
-
-
-function toSeconds(minutes, seconds)
-{
-	return ((minutes * 60) ?? 0) + (seconds ?? 0);
-}
-
-function setReminder() {
-	setSettings.reminderSeconds = parseFloat(document.getElementById('time-input').value);
-	setSettings.reminderMinutes = 0;
-}
-
-function startCountdown(durationSeconds) {
-  const endTime = Date.now() + durationSeconds * 1000;
-	const display = document.getElementById('timer');
-
-  function update() {
-    const remaining = Math.max(0, endTime - Date.now());
-    const totalSeconds = Math.floor(remaining / 1000);
-    const minutes = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
-    const seconds = String(totalSeconds % 60).padStart(2, '0');
-    
-    display.textContent = `${minutes}:${seconds}`;
-
-    if (remaining <= 0) {
-      clearInterval(timer);
-			window.electronAPI.showNotification();
-			startCountdown(toSeconds(setSettings.reminderMinutes, setSettings.reminderSeconds));
-			return;
-    }
-  }
-
-  update(); // Run immediately
-  const timer = setInterval(update, 250); // More responsive + still efficient
-}
-
-startCountdown(toSeconds(setSettings.reminderMinutes, setSettings.reminderSeconds)); // countdown from reminder settings
-document.getElementById('time-input').value = toSeconds(setSettings.reminderMinutes, setSettings.reminderSeconds);
-
-document.getElementById('capacity-input').value = bottleState.totalWater;
-
-setWaterLevel(15, bottleState.totalWater);
-
 // ---------------------- Unit Selector  ---------------------- 
-
-
 
 // Current Fill Unit Selection:
 var fillUnitSelection = '%'; // defaulted to percent
@@ -393,14 +229,6 @@ function openUnitSelector(targetEl, unitList, currentUnit, position = null) {
 
 const dummyTarget = document.querySelector('.unit-button') || document.body;
 
-// Press 'J' to open unit menu at last mouse position 
-document.addEventListener('keydown', (e) => {
-	if (e.key.toLowerCase() === 'j') {
-		// Use first unit-button as dummy target
-		openUnitSelector(dummyTarget, ['ml', 'oz', 'L']);
-	}
-});
-
 function selectUnitFill(target) {
   try {
     openUnitSelector(target, ['ml', 'oz', '%'], fillUnitSelection);
@@ -416,54 +244,3 @@ document.addEventListener('click', (e) => {
 		unitSelector.style.display = 'none';
 	}
 });
-
-// -----------  Convertion Functions ---------------
-
-
-
-function convertUnit(value, fromUnit, toUnit) {
-  // Normalize fromUnit to ml
-  let mlValue;
-  
-  if (fromUnit === 'ml') {
-    mlValue = value;
-  } 
-	else if (fromUnit === 'oz') {
-    mlValue = ozToMl(value);
-  } 
-	else if (fromUnit === 'L') {
-    mlValue = value * 1000;
-  } 
-	else if (fromUnit === '%') {
-    mlValue = (value / 100) * bottleState.totalWater;
-  }
-	else {
-		console.log("wtf did u do?");
-	}
-  
-  // Then convert from ml to the target unit
-  if (toUnit === 'ml') {
-    return mlValue.toFixed(1);
-  } 
-	else if (toUnit === 'oz') {
-    return mlToOz(mlValue).toFixed(1);
-  } 
-	else if (toUnit === 'L') {
-    return (Math.round(mlValue * 0.001 * 1000) / 1000).toFixed(1);
-  } 
-	else if (toUnit === '%') {
-    return ((mlValue / bottleState.totalWater) * 100).toFixed(1);
-  }
-  
-  return value;
-}
-
-function ozToMl(oz)
-{
-	return (oz * 29.5735);
-}
-
-function mlToOz(ml)
-{
-	return (ml / 29.5735);
-}

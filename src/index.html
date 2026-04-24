@@ -57,7 +57,6 @@
     <div class="info-view">
 
       <h1 id="welcome-name">Hello!</h1>
-      <h1 id="level-number">Level 1</h1>
 
       <div class="capacity-block">
         <h1 id="bottle-size">Bottle Capacity</h1>
@@ -87,29 +86,6 @@
       <h1 id="grand-total">Grand total: 0 ml</h1>
       <h1 id="hours-total">Hours opened: 0</h1>
 
-      <div class="quest-board">
-        <h1 id="quests-header">Daily Quests</h1>
-
-        <div class="quest" data-quest-id="1">
-          <div class="quest-name">Drink Water</div>
-          <div class="quest-progress">1000/1200 ml</div>
-          <img src = "images/yesSimple.png" class="quest-complete" draggable="false">
-        </div>
-
-        <div class="quest" data-quest-id="2">
-          <div class="quest-name">Drink Water</div>
-          <div class="quest-progress">1000/1200 ml</div>
-          <img src = "images/yesSimple.png" class="quest-complete" draggable="false">
-        </div>
-
-        <div class="quest" data-quest-id="3">
-          <div class="quest-name">Sip four times in a single hour</div>
-          <div class="quest-progress">0/4 sips</div>
-          <img src = "images/yesSimple.png" class="quest-complete" draggable="false">
-        </div>
-
-      </div>
-
     </div>
 
     <button class="unit-button" data-units="ml,oz,L">ml</button>
@@ -119,6 +95,13 @@
     </div>
 
   </body>
+  <script src="js/units.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/hydration.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/reminders.js"></script>
+  <script src="js/main.js"></script>
   <script defer src="js/eventHandlers.js"></script>
-  <script defer src="js/eventRegister.js"></script>
+  <script defer src="js/eventRegister.js"></script> <!-- needs everything, goes last -->
 </html>
