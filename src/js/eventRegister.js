@@ -23,8 +23,7 @@ noFillButton.addEventListener("click", toggleOverlay);
 let confirmSetFill = document.getElementById("yes-btn2");
 confirmSetFill.addEventListener("click", setMenuFill);
 
-let submitTimer = document.getElementById("time-start");
-submitTimer.addEventListener("click", setReminder);
+// ---------- CAPACITY CHANGE BUTTONS -----------
 
 let editCapacity = document.getElementById("capacity-change");
 editCapacity.addEventListener("click", (event) => {
@@ -43,6 +42,36 @@ document.addEventListener("keydown", (event) => {
     toggleOverlay(); 
   }
 });
+
+// ---------- DAILY GOAL CHANGE BUTTONS -----------
+
+let editGoal = document.getElementById("goal-change");
+editGoal.addEventListener("click", (event) => {
+  const button = event.currentTarget; // always refers to the button, not inner <img>
+  editDailyGoal(button);
+});
+
+let submitGoal = document.getElementById("goal-change-yes");
+submitGoal.addEventListener("click", updateDailyGoal);
+
+let cancelGoal = document.getElementById("goal-change-no");
+cancelGoal.addEventListener("click", cancelDailyGoal);
+
+// ---------- REMINDER CHANGE BUTTONS -----------
+
+let editReminderBtn = document.getElementById("reminder-change");
+editReminderBtn.addEventListener("click", (event) => {
+  const button = event.currentTarget; // always refers to the button, not inner <img>
+  editReminder(button);
+});
+
+let submitReminder = document.getElementById("reminder-change-yes");
+submitReminder.addEventListener("click", updateReminder);
+
+let cancelReminderBtn = document.getElementById("reminder-change-no");
+cancelReminderBtn.addEventListener("click", cancelReminder);
+
+// ----------------------------------------------------
 
 let bottlePress = document.getElementById("bottle-container");
 bottlePress.addEventListener("click", toggleOverlay);

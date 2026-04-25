@@ -59,29 +59,33 @@
       <h1 id="welcome-name">Welcome, Name!</h1>
 
       <!-- Daily Progress Bar -->
-      <div class="w3-border">
-        <div class="w3-grey" style="height:24px;width:100%"></div>
+      <h1 id="goal-title">Daily Goal</h1>
+      <div class="progress-div">
+        <div class="daily-progress-fill" id="daily-progress-fill"></div>
       </div>
+      <h1 id="goal-ml">0 / 2000</h1>
 
       <!-- Stat boxes -->
       <div class="stat-boxes">
         <div class="stat-block">
-          <h1 id="total-today">800 ml</h1>
+          <h1 id="total-today">0 ml</h1>
           <h2>today</h2>
         </div>
         <div class="stat-block">
-          <h1 id="average-sip">11 ml</h1>
+          <h1 id="average-sip">0 ml</h1>
           <h2>avg sip</h2>
         </div>
         <div class="stat-block">
-          <h1 id="grand-total">4200 ml</h1>
+          <h1 id="grand-total">0 ml</h1>
           <h2>total</h2>
         </div>
         <div class="stat-block">
-          <h1 id="hours-total">26 hrs</h1>
+          <h1 id="hours-total">0 hrs</h1>
           <h2>active</h2>
         </div>
       </div>
+
+      <h1 id="settings-title">Settings</h1>
 
       <div class="capacity-block">
         <h1 id="bottle-size">Bottle Capacity</h1>
@@ -93,22 +97,24 @@
       </div>
       
       <div class="goal-block">
-        <h1 id="daily-goal">Daily Goal: 0% </h1>
+        <h1 id="daily-goal">Daily Goal</h1>
         <input type="text" id="goal-input" name="goal-input" value="2000" disabled>
         <h1 id="daily-goal-unit">ml</h1>
-        <button id="goal-start"><img src="images/smallEdit.png" alt="-" draggable="false"></button>
+        <button class="small-button" id="goal-change"><img src="images/smallEdit.png" draggable="false"></button>
+        <button class="small-button" id="goal-change-yes"><img src="images/smallCheckNew.png" draggable="false"></button>
+        <button class="small-button" id="goal-change-no"><img src="images/smallNo.png" draggable="false"></button>
       </div>
 
       <div class="reminder-block">
         <h1 id="reminder-header">Reminder</h1>
-        <input type="text" id="time-input" name="time-input" disabled>
+        <input type="text" id="reminder-input" name="reminder-input" disabled>
         <h1 id="reminder-unit">seconds</h1>
-        <button id="time-start"><img src="images/smallEdit.png" alt="-" draggable="false"></button>
+        <button class="small-button" id="reminder-change"><img src="images/smallEdit.png" draggable="false"></button>
+        <button class="small-button" id="reminder-change-yes"><img src="images/smallCheckNew.png" draggable="false"></button>
+        <button class="small-button" id="reminder-change-no"><img src="images/smallNo.png" draggable="false"></button>
       </div>
 
     </div>
-
-    
 
     <div class="unit-selector" id="unitSelector">
       <!-- Dynamically filled by JS -->

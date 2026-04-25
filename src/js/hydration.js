@@ -1,6 +1,7 @@
 const dailyStats = {
-	dailyGoalProgress: 0, // ml
+	dailyGoalProgress: 0, // percent
 	totalToday: 0, // ml
+	grandTotal: 0, // test
 }
 
 // ------------------------------ MAIN SIP FUNCTIONS ------------------------------
@@ -19,8 +20,6 @@ function sipWater()
 
 	setBottleStates(bottleState.remainingWater);
   dailyGoalTest(waterDrank);
-
-  render();
 }
 
 function refillWater()
@@ -32,18 +31,27 @@ function dailyGoalTest(waterDrank)
 {
   // add to daily goal:
 	dailyStats.dailyGoalProgress += waterDrank;
-	let goalPercent = Math.min(100, ((dailyStats.dailyGoalProgress / setSettings.dailyGoal) * 100));
-
+	
 	// add to daily total:
 	dailyStats.totalToday += waterDrank;
+
+	let goalPercent = Math.min(100, ((dailyStats.totalToday / setSettings.dailyGoal) * 100));
 
   // debug
 	console.log(bottleState.remainingWater);
 	console.log(bottleState.remainingPercent);
 	console.log(bottleState.remainingOz);
-
 	console.log(goalPercent.toFixed(1) + "%");
 
-	document.getElementById("daily-goal").innerHTML = "Daily Goal: " + goalPercent.toFixed(1) + "%";
-	document.getElementById("total-today").innerHTML = "Total today: " + dailyStats.totalToday + " ml";
+	dailyStats.dailyGoalProgress = goalPercent;
+	document.getElementById("total-today").innerHTML = dailyStats.totalToday + " ml";
+
+	updateTotalDrank(waterDrank);
+	render();
+}
+
+function updateTotalDrank(waterDrank)
+{
+	dailyStats.grandTotal += waterDrank;
+	document.getElementById("grand-total").innerHTML = dailyStats.grandTotal + " ml";
 }

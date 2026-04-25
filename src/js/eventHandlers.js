@@ -43,60 +43,7 @@ function closeSip()
 	sipMenu.style.bottom = "-200px";
 }
 
-function editTotalCapacity(target) {
-	let input = document.getElementById('capacity-input');
-	let yesBtn = document.getElementById('capacity-change-yes');
-	let noBtn = document.getElementById('capacity-change-no');
 
-	if (input.disabled == true)
-	{	 
-		yesBtn.style.display = "block";
-		noBtn.style.display = "block";
-
-		input.disabled = false;
-		target.style.display = "none";
-	}
-	else{
-		input.disabled = true;
-	}
-}
-
-function updateTotalCapacity() {
-	let input = document.getElementById('capacity-input');
-	let editBtn = document.getElementById("capacity-change");
-	let yesBtn = document.getElementById('capacity-change-yes');
-	let noBtn = document.getElementById('capacity-change-no');
-
-	bottleState.totalWater = document.getElementById('capacity-input').value;
-	bottleState.remainingPercent = ((bottleState.remainingWater / bottleState.totalWater) * 100);
-	if (bottleState.remainingWater > bottleState.totalWater) {
-			bottleState.remainingWater = bottleState.totalWater;
-			bottleState.remainingPercent = 100;
-	}
-
-	let newPercent = (100 - (((bottleState.remainingWater / bottleState.totalWater)) * 85));
-	setWaterLevel(newPercent, bottleState.remainingWater);
-	updateSlider();
-
-	editBtn.style.display = "block";
-	yesBtn.style.display = "none";
-	noBtn.style.display = "none";
-
-	input.disabled = true;
-}
-
-function cancelCapacityChange() {
-	let input = document.getElementById('capacity-input');
-	let editBtn = document.getElementById("capacity-change");
-	let yesBtn = document.getElementById('capacity-change-yes');
-	let noBtn = document.getElementById('capacity-change-no');
-
-	editBtn.style.display = "block";
-	yesBtn.style.display = "none";
-	noBtn.style.display = "none";
-
-	input.disabled = true;
-}
 
 // ---------------------- Fill Menu ---------------------- 
 
@@ -159,7 +106,7 @@ function setMenuFill() {
 	console.log(percentAsMl);
 	offsetPercent = 100 - ((sliderValue / 100) * 85); // maps to 100–15
 
-	setWaterLevel(offsetPercent, percentAsMl);
+	setBottleStates(percentAsMl);
 	bottleState.remainingOz = mlToOz(percentAsMl);
 	bottleState.remainingPercent = slider.value;
 
@@ -169,6 +116,8 @@ function setMenuFill() {
 	console.log(bottleState.remainingWater);
 	console.log(bottleState.remainingPercent);
 	console.log(bottleState.remainingOz);
+
+	render();
 }
 
 // ---------------------- Unit Selector  ---------------------- 

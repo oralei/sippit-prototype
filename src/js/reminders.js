@@ -1,16 +1,22 @@
 // ---------------------- Notification/Reminder ---------------------- 
 
-function toSeconds(minutes, seconds)
+let timerInterval = null; // track the active interval
+
+function secondsToMinutes(seconds)
 {
-	return ((minutes * 60) ?? 0) + (seconds ?? 0);
+	return (seconds / 60);
 }
 
 function setReminder() {
-	setSettings.reminderSeconds = parseFloat(document.getElementById('time-input').value);
-	setSettings.reminderMinutes = 0;
+	setSettings.reminderSeconds = parseFloat(document.getElementById('reminder-input').value);
 }
 
 function startCountdown(durationSeconds) {
+  if (timerInterval !== null) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+
   const endTime = Date.now() + durationSeconds * 1000;
 	const display = document.getElementById('timer');
 
@@ -25,13 +31,11 @@ function startCountdown(durationSeconds) {
     if (remaining <= 0) {
       clearInterval(timer);
 			window.electronAPI.showNotification();
-			startCountdown(toSeconds(setSettings.reminderMinutes, setSettings.reminderSeconds));
+			startCountdown(setSettings.reminderSeconds);
 			return;
     }
   }
 
   update(); // Run immediately
-  const timer = setInterval(update, 250); // More responsive + still efficient
+  timerInterval = setInterval(update, 250);
 }
-
-startCountdown(toSeconds(setSettings.reminderMinutes, setSettings.reminderSeconds)); // countdown from reminder settings

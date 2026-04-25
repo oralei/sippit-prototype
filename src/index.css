@@ -644,11 +644,41 @@ h2 {
   color: #707084;
 }
 
-/* daily rogress bar test */
-.w3-grey {
-  display: flex;
-  grid-column: 0 / 0;
-  grid-row: 1 / 1;
+#goal-title {
+  position: relative;
+  text-align: center;
+  width: 350px;
+  transform: translate(-18px, 24px);
+  color: #262133;
+}
+
+#goal-ml {
+  position: relative;
+  text-align: center;
+  transform: translate(0px, -80px);
+  grid-row: 4 / 4;
+  width: 350px;
+  color: #655b7c;
+}
+
+.progress-div {
+  grid-column: 1 / -1;
+  grid-row: 2 / 2;
+  width: 265px;
+  height: 16px;
+  background: #a094c0;
+  transform: translate(2px, 0px);
+  border: 3px solid #464164;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.daily-progress-fill {
+  height: 100%;
+  width: 0%; /* controlled by JS render */
+  background: #ffe986;
+  border-radius: 1px;
+  transition: width 0.5s ease;
 }
 
 .stat-boxes {
@@ -694,6 +724,15 @@ h2 {
   justify-content: center;
 }
 
+#settings-title {
+  grid-column: 0 / 0;
+  grid-row: 5 / 5;
+  transform: translate(0px, 20px);
+  width: 350px;
+  font-size: 22px;
+  color: #999cc5;
+}
+
 .capacity-block {
   display: flex;
   width: 330px;
@@ -724,7 +763,7 @@ h2 {
   justify-content: left;
 }
 
-#time-input, #goal-input, #capacity-input {
+#reminder-input, #goal-input, #capacity-input {
   width: 70px;
   position: relative;
 }
@@ -794,8 +833,10 @@ h2 {
   transition: ease-out 70ms;
 }
 
-#capacity-change-yes,
-#capacity-change-no {
+#capacity-change-yes, #capacity-change-no,
+#goal-change-yes, #goal-change-no,
+#reminder-change-yes, #reminder-change-no
+{
 	display: none;
 }
 
