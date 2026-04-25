@@ -1,1 +1,3 @@
 setBottleStates(bottleState.totalWater);
+
+render();

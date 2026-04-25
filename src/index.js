@@ -19,15 +19,15 @@ const createWindow = () => {
     height: 550,
     minWidth: 300,
     minHeight: 550,
-    maxWidth: 900,
+    maxWidth: 589,
     maxHeight: 550,
     frame: false,  // disables the default OS window frame
-    resizable: true,
+    resizable: false,
     maximizable: false,
     fullscreenable: false,
     transparent: true,   // allows the background to be transparent
     hasShadow: false,    // optional: disables shadow around the window
-    icon: '/images/icon.png',
+    icon: 'src/images/icon.png',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true
@@ -37,7 +37,7 @@ const createWindow = () => {
   // and load the index.html of the app.
   win.loadFile(path.join(__dirname, 'index.html'));
 
-  // Open the DevTools.
+  // Open the DevTools - this is commented out because you can just do CTRL + Shift + I instead
   //mainWindow.webContents.openDevTools();
 };
 
@@ -77,11 +77,15 @@ ipcMain.on('minimize-app', () => {
 });
 
 ipcMain.on('fold-info', () => {
+  win.setResizable(true)       // allow resize momentarily
   win.setSize(300, 550, true);
+  win.setResizable(false)      // lock it again
 })
 
 ipcMain.on('unfold-info', () => {
-  win.setSize(900, 550, true);
+  win.setResizable(true)       // allow resize momentarily
+  win.setSize(589, 550, true);
+  win.setResizable(false)      // lock it again
 })
 
 const NOTIFICATION_TITLE = 'sippit';

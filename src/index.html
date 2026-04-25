@@ -56,7 +56,32 @@
 
     <div class="info-view">
 
-      <h1 id="welcome-name">Hello!</h1>
+      <h1 id="welcome-name">Welcome, Name!</h1>
+
+      <!-- Daily Progress Bar -->
+      <div class="w3-border">
+        <div class="w3-grey" style="height:24px;width:100%"></div>
+      </div>
+
+      <!-- Stat boxes -->
+      <div class="stat-boxes">
+        <div class="stat-block">
+          <h1 id="total-today">800 ml</h1>
+          <h2>today</h2>
+        </div>
+        <div class="stat-block">
+          <h1 id="average-sip">11 ml</h1>
+          <h2>avg sip</h2>
+        </div>
+        <div class="stat-block">
+          <h1 id="grand-total">4200 ml</h1>
+          <h2>total</h2>
+        </div>
+        <div class="stat-block">
+          <h1 id="hours-total">26 hrs</h1>
+          <h2>active</h2>
+        </div>
+      </div>
 
       <div class="capacity-block">
         <h1 id="bottle-size">Bottle Capacity</h1>
@@ -81,14 +106,9 @@
         <button id="time-start"><img src="images/smallEdit.png" alt="-" draggable="false"></button>
       </div>
 
-      <h1 id="total-today">Total today: 0 ml</h1>
-      <h1 id="average-sip">Average Sip: 0 ml</h1>
-      <h1 id="grand-total">Grand total: 0 ml</h1>
-      <h1 id="hours-total">Hours opened: 0</h1>
-
     </div>
 
-    <button class="unit-button" data-units="ml,oz,L">ml</button>
+    
 
     <div class="unit-selector" id="unitSelector">
       <!-- Dynamically filled by JS -->

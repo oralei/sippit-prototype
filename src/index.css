@@ -121,7 +121,7 @@ input:disabled {
   position: absolute;
   top: 0;
   left: 0;
-  width: 900px;
+  width: 589px;
   height: 550px;
   z-index: 0;
 
@@ -211,11 +211,12 @@ input[type="checkbox"]:checked + .checkbox-image {
 
   transition: transform 300ms ease-out, filter 200ms ease-in-out;
   transform: translateY(0);
+  
 }
 
 #sip-btn:active {
   transform: translateY(2px);
-  transition: ease-out 70ms;
+  transition: ease-out 140ms;
 }
 
 #sip-btn:hover {
@@ -351,6 +352,7 @@ button:active {
   width: 250px;
   height: 150px;
   background-color: #ff000000;
+  box-shadow: 0 4px 12px rgba(21, 1, 53, 0.308);
   z-index: 990;
 
   opacity: 0;
@@ -544,7 +546,7 @@ button:active {
 }
 
 #yes-btn, #no-btn {
-  
+  display: block;
 }
 
 #remaining-oz {
@@ -602,10 +604,9 @@ h1 {
 
   color: #262133;
   font-family: "Jersey 15", sans-serif;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 400;
   font-style: normal;
-  text-align: left;
 
   z-index: 20;
 
@@ -618,12 +619,78 @@ h1 {
   user-select: none;
 }
 
-#level-number {
-  grid-column: 3 / 3;
-  grid-row: 0 / 0;
+h2 {
+  display: flex;
+
+  color: #464164;
+  font-family: "Jersey 15", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+
+  z-index: 20;
 
   text-align: center;
+
+  border: 1px solid #ff000000;
+  background-color: #5900ff00;
+  user-select: none;
+}
+
+#welcome-name {
+  grid-column: 0 / 0;
+  grid-row: 0 / 0;
+  width: 350px;
+  color: #707084;
+}
+
+/* daily rogress bar test */
+.w3-grey {
+  display: flex;
+  grid-column: 0 / 0;
+  grid-row: 1 / 1;
+}
+
+.stat-boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-column: 0 / 2;
+  grid-row: 3 / 3;
+}
+
+.stat-block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  background-image: url("images/statBox.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 139px;
+  height: 49px;
+  margin: 2px -2px 2px 2px;
+}
+
+.stat-block:hover {
+  filter: brightness(105%);
+  transition: ease-out 80ms;
+}
+
+.stat-block h1 {
+  margin: 0;
+  width: 100%;
+  transform: translate(-3px, 0);
+  text-align: center;
+  justify-content: center;
+}
+
+.stat-block h2 {
+  margin: 0;
+  width: 100%;
+  transform: translate(-3px, -2px);
+  text-align: center;
   justify-content: center;
 }
 
@@ -631,7 +698,7 @@ h1 {
   display: flex;
   width: 330px;
   grid-column: 0 / 0;
-  grid-row: 3 / 3;
+  grid-row: 6 / 6;
 
   align-items: center;
   justify-content: left;
@@ -641,7 +708,7 @@ h1 {
   display: flex;
   width: 400px;
   grid-column: 0 / 0;
-  grid-row: 4 / 4;
+  grid-row: 7 / 7;
 
   align-items: center;
   justify-content: left;
@@ -651,7 +718,7 @@ h1 {
   display: flex;
   width: 250px;
   grid-column: 0 / 0;
-  grid-row: 5 / 5;
+  grid-row: 8 / 8;
 
   align-items: center;
   justify-content: left;
@@ -660,30 +727,6 @@ h1 {
 #time-input, #goal-input, #capacity-input {
   width: 70px;
   position: relative;
-}
-
-#total-today {
-  width: 400px;
-  grid-column: 0 / 0;
-  grid-row: 6 / 6;
-}
-
-#average-sip {
-  width: 200px;
-  grid-column: 0 / 0;
-  grid-row: 7 / 7;
-}
-
-#grand-total {
-  width: 170px;
-  grid-column: 0 / 0;
-  grid-row: 8 / 8;
-}
-
-#hours-total {
-  width: 150px;
-  grid-column: 3 / 3;
-  grid-row: 8 / 8;
 }
 
 .fold-btn {
@@ -700,81 +743,6 @@ h1 {
   width: 50px;
 
   z-index: 300;
-}
-
-.quest-board {
-  grid-column: 1 / 6;
-  grid-row: 9 / 10;
-
-  display: grid;
-
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 30px 90px;
-
-  border: 1px solid #ff000000;;
-  background-color: #5900ff00;
-
-  transform: translate(-2.5px, 200px);
-}
-
-.quest {
-  display: flex;
-  flex-direction: column; /* cool new thing! */
-  grid-row: 2 / 2;
-
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-
-  border: 3px solid #262133;
-  border-radius: 5px;
-  background-color: #dad6f1;
-
-  margin: 5px;
-
-  transition: background-color 200ms;
-}
-
-.quest:hover {
-  background-color: #ffe388;
-}
-
-.quest-name {
-  font-size: 24px;
-}
-
-.quest-progress {
-  display: block;
-  font-size: 20px;
-}
-
-.quest-complete {
-  position: absolute;
-  transform: translate(80px, -34px);
-}
-
-.xp-reward {
-  font-size: 18px;
-  text-align: right;
-  position: absolute;
-  transform: translate(0px, 0px);
-}
-
-#quests-header {
-  grid-column: 2 / 2;
-  grid-row: 1 / 1;
-
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-
-  color: rgb(255, 255, 255);
-  paint-order: stroke fill;
-  -webkit-text-stroke-width: 4px;
-  -webkit-text-stroke-color: black;
-
-  border: 1px solid #ffffff00;;
-  background-color: #00f7ff00;
 }
 
 @keyframes bounce {
@@ -809,7 +777,7 @@ h1 {
   font-style: normal;
 }
 
-.unit-selector button, .unit-button {
+.unit-selector button {
   font-family: "Jersey 15", sans-serif;
   font-size: 20px;
   font-weight: 400;
@@ -821,7 +789,13 @@ h1 {
   border-radius: 6px;
 }
 
+.unit-selector button:active{
+  scale: 90%;
+  transition: ease-out 70ms;
+}
+
 #capacity-change-yes,
 #capacity-change-no {
 	display: none;
 }
+
