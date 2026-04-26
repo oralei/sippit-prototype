@@ -4,16 +4,29 @@ function render() {
   renderWaterFill();
   // remaining-ml text and remaining-oz text
   setRemainingText();
-  // daily-goal
+  // daily-goal bar and text
   renderDailyProgress();
   // total-today text
+
   // streak text
-  // timer display (reminders.js updates this separately)
+
   // slider visual if fill menu is open
 
-  document.getElementById('goal-input').value = setSettings.dailyGoal;
+  // Stat Blocks
+  document.getElementById('total-today').innerHTML = dailyStats.totalToday + " ml";
+  document.getElementById('average-sip').innerHTML = dailyStats.avgSip + " ml";
+  document.getElementById('grand-total').innerHTML = dailyStats.grandTotal + " ml";
+  document.getElementById('hours-total').innerHTML = dailyStats.hoursActive + " hrs";
+
+  // Editable settings
   document.getElementById('reminder-input').value = setSettings.reminderSeconds;
+  document.getElementById('goal-input').value = setSettings.dailyGoal;
   document.getElementById('capacity-input').value = bottleState.totalWater;
+
+  // sip menu use last
+  const lastSipIndex = (sipsBuffer.head - 1 + sipsBuffer.size) % sipsBuffer.size;
+  document.getElementById('sip-amount-input').value = (sipsBuffer.buffer[lastSipIndex]).toFixed(2) ?? 0;
+
 }
 
 function renderWaterFill()

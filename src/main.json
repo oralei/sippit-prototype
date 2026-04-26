@@ -1,0 +1,29 @@
+{
+  "userSettings": {
+    "name": "Mark",
+    "reminderTimeSeconds": "300",
+    "dailyGoalMl": "2100",
+    "bottleCapacityMl": 1182.94,
+    "fillMenuUnit": "ml"
+  },
+  "userStats": {
+    "totalWaterMl": 1259,
+    "totalTimeOpened": 29
+  },
+  "sipBufferInfo": {
+    "lastSips": [
+      12,
+      15,
+      13,
+      10,
+      12,
+      14,
+      233,
+      null,
+      null,
+      null
+    ],
+    "head": 7,
+    "tail": 0
+  }
+}

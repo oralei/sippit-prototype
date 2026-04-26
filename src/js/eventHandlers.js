@@ -5,7 +5,6 @@ var sipMenuOpen = false;
 
 function exitApp()
 {
-	console.log("does this work?");
 	window.electronAPI.closeApp();
 }
 
@@ -42,7 +41,6 @@ function closeSip()
 
 	sipMenu.style.bottom = "-200px";
 }
-
 
 
 // ---------------------- Fill Menu ---------------------- 

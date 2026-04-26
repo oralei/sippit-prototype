@@ -375,8 +375,14 @@ button:active {
   justify-content: center;
   align-items: center;
   transform: translate(0px, 5px);
+  color: #262133;
 
   cursor: pointer;
+  transition: color 100ms ease;
+}
+
+#fill-percent:hover {
+  color: #66618d;
 }
 
 #fill-header {

@@ -3,10 +3,11 @@ const path = require('node:path');
 const fs = require('fs');
 const { settings } = require('node:cluster');
 
-// hot reload - REMOVE WHEN DOING npm run make
+// hot reload - REMOVE WHEN DOING npm run make 
+/*
 require('electron-reload')(__dirname, {
   electron: require(`${__dirname}/../node_modules/electron`)
-});
+}); */
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -101,16 +102,6 @@ ipcMain.on('send-notif', () => {
   showNotification();
 })
 
-async function writeFileExample() {
-  try {
-    // Write JSON data
-    const data = { name: 'John', age: 30, city: 'New York' };
-    await fs.promises.writeFile('src/test.json', JSON.stringify(data, null, 2), 'utf8');
-
-    console.log('Files created successfully');
-  } catch (err) {
-    console.error('Error writing files:', err);
-  }
-}
-
-writeFileExample();
+ipcMain.on('write-file', (event, { filePath, data }) => {
+  fs.writeFileSync(filePath, data, 'utf-8');
+});

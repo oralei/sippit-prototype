@@ -11,7 +11,8 @@ contextBridge.exposeInMainWorld("electronAPI", {
   unfoldInfo: () => ipcRenderer.send('unfold-info'),
   showNotification: () => ipcRenderer.send('send-notif'),
   readSettings: () => {
-    const raw = fs.readFileSync("src/settings.json", "utf-8");
+    const raw = fs.readFileSync("src/main.json", "utf-8");
     return JSON.parse(raw);
-  }
+  },
+  writeFile: (filePath, data) => ipcRenderer.send('write-file', { filePath, data })
 });

@@ -53,6 +53,7 @@ function updateTotalCapacity() {
 	input.disabled = true;
 
 	render();
+	saveData();
 }
 
 function cancelCapacityChange() {
@@ -103,6 +104,7 @@ function updateDailyGoal() {
 	input.disabled = true;
 
 	render();
+	saveData();
 }
 
 function cancelDailyGoal() {
@@ -153,6 +155,7 @@ function updateReminder() {
 	input.disabled = true;
 
 	startCountdown(setSettings.reminderSeconds);
+	saveData();
 }
 
 function cancelReminder() {

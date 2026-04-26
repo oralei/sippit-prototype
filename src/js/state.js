@@ -1,6 +1,7 @@
 const parsedSettingsData = window.electronAPI.readSettings();
 
 let bottleSizeSetting = parsedSettingsData.userSettings.bottleCapacityMl;
+let userName = parsedSettingsData.userSettings.name;
 
 // This is the main interactive bottle state. Mostly dynamic values
 const bottleState = {
