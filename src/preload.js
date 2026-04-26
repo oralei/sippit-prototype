@@ -1,6 +1,7 @@
 // See the Electron documentation for details on how to use preload scripts:
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 
+const fs = require('fs');
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("electronAPI", {
@@ -9,4 +10,8 @@ contextBridge.exposeInMainWorld("electronAPI", {
   foldInfo: () => ipcRenderer.send('fold-info'),
   unfoldInfo: () => ipcRenderer.send('unfold-info'),
   showNotification: () => ipcRenderer.send('send-notif'),
+  readSettings: () => {
+    const raw = fs.readFileSync("src/settings.json", "utf-8");
+    return JSON.parse(raw);
+  }
 });

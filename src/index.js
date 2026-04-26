@@ -1,5 +1,7 @@
 const { app, BrowserWindow, Notification, ipcMain } = require('electron');
 const path = require('node:path');
+const fs = require('fs');
+const { settings } = require('node:cluster');
 
 // hot reload - REMOVE WHEN DOING npm run make
 require('electron-reload')(__dirname, {
@@ -98,3 +100,17 @@ function showNotification () {
 ipcMain.on('send-notif', () => {
   showNotification();
 })
+
+async function writeFileExample() {
+  try {
+    // Write JSON data
+    const data = { name: 'John', age: 30, city: 'New York' };
+    await fs.promises.writeFile('src/test.json', JSON.stringify(data, null, 2), 'utf8');
+
+    console.log('Files created successfully');
+  } catch (err) {
+    console.error('Error writing files:', err);
+  }
+}
+
+writeFileExample();

@@ -1,7 +1,11 @@
+const parsedSettingsData = window.electronAPI.readSettings();
+
+let bottleSizeSetting = parsedSettingsData.userSettings.bottleCapacityMl;
+
 // This is the main interactive bottle state. Mostly dynamic values
 const bottleState = {
-	totalWater: 1182.94, // ml
-	remainingWater: 1182.94, // ml
+	totalWater: bottleSizeSetting, // ml
+	remainingWater: bottleSizeSetting, // ml
 	remainingPercent: 100, // ← percent of actual water left 0-100
 	remainingOz: 40,
   visualFillPercent: 15,   // ← the clip-path value, 15–100, 15 = full

@@ -1,7 +1,12 @@
+let reminderTimeSetting = parsedSettingsData.userSettings.reminderTimeSeconds;
+let dailyGoalSetting = parsedSettingsData.userSettings.dailyGoalMl;
+let nameSetting = parsedSettingsData.userSettings.name;
+
 // settings of popup menu
 const setSettings = {
-	reminderSeconds: 600,
-	dailyGoal: 2000, // ml
+	name: nameSetting, 
+	reminderSeconds: reminderTimeSetting,
+	dailyGoal: dailyGoalSetting, // ml
 };
 
 // EDIT CAPACITY

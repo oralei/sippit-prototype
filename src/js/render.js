@@ -1,6 +1,5 @@
-
-
 function render() {
+  document.getElementById('welcome-name').innerHTML = "Welcome, " + setSettings.name + "!";
   // Water fill visual
   renderWaterFill();
   // remaining-ml text and remaining-oz text
@@ -12,7 +11,7 @@ function render() {
   // timer display (reminders.js updates this separately)
   // slider visual if fill menu is open
 
-
+  document.getElementById('goal-input').value = setSettings.dailyGoal;
   document.getElementById('reminder-input').value = setSettings.reminderSeconds;
   document.getElementById('capacity-input').value = bottleState.totalWater;
 }
@@ -35,5 +34,5 @@ function renderDailyProgress()
   let progressFill = document.getElementById("daily-progress-fill");
   progressFill.style.width = dailyStats.dailyGoalProgress + "%";
 
-  document.getElementById("goal-ml").innerHTML = Math.min(setSettings.dailyGoal, dailyStats.totalToday) + " / " + (setSettings.dailyGoal);
+  document.getElementById("goal-ml").innerHTML = Math.min(setSettings.dailyGoal, dailyStats.totalToday) + " / " + (setSettings.dailyGoal) + " ml";
 }
